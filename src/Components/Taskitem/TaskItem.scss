@@ -1,0 +1,88 @@
+@use '../../Style/colors.scss' as *;
+.taskItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:0.625rem;
+    border-bottom: 1px solid #eee;
+
+    &__left{
+        display: flex;
+         gap: 10px;
+         align-items: center;
+    }
+    &__input{
+         border: none;
+         outline: none;
+         font-size:.875rem;
+    }
+    &__input--done{
+        text-decoration: line-through;
+        color: #999;
+     }
+     &__remove {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+        135deg,
+        $redLight,
+        $redDark
+    );
+    color:$white;
+    border: none;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: all .3s ease;
+
+    box-shadow:
+        0 4px 12px rgba(229, 57, 53, .3);
+
+    &:hover {
+        transform: translateY(-3px) scale(1.05);
+
+        box-shadow:
+            0 10px 24px rgba(229, 57, 53, .4);
+    }
+    &:active {transform: scale(.96);}
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -120%;
+        width: 80px;
+        height: 100%;
+        background: rgba(255,255,255,.3);
+        transform: skewX(-25deg);
+        transition: .6s;
+    }
+    &:hover::before {left: 150%;}
+}
+&__checkbox {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    appearance: none;
+    border: 2px solid #d1d5db;
+    border-radius: 6px;
+    display: grid;
+    place-content: center;
+    transition: all .2s ease;
+}
+.taskItem__checkbox:hover {border-color:$greenLigth;}
+
+.taskItem__checkbox:checked {
+    background:$greenLigth;
+    border-color:$greenLigth;
+}
+.taskItem__checkbox:checked::after {
+    content: "✓";
+    color: $white;
+    font-size:0.875rem;
+    font-weight: bold;
+}
+}
